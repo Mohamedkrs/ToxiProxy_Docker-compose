@@ -7,7 +7,4 @@ RUN apt-get update && \
 RUN python -m pip install "git+https://github.com/douglas/toxiproxy-python.git"
 WORKDIR /usr/app/src
 COPY ToxiProxyPy.py ./ToxiProxyPy.py
-#RUN mkdir ./config/
-#COPY Config.json ./Config.json
-
 CMD ["python", "-u", "ToxiProxyPy.py"]
