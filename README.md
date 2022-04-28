@@ -13,7 +13,7 @@ Simply modify the config.json and adapt the ports inside of docker-compose file 
 
 # Explaining the components
 ## Docker Compose
-First, we will use docker compose. The toxiproxy service starts the toxicproxy server inside a container at port number *8474*. I've chosen [jauderho](https://hub.docker.com/r/jauderho/toxiproxy) because it is always up to date.
+First, we will use docker compose. The toxiproxy service starts the toxicproxy server inside a container at port number *8474*. I've chosen [jauderho/toxiproxy](https://hub.docker.com/r/jauderho/toxiproxy) because it is always up to date.
 
 ### toxiproxy ports
 - **Optional**: Exposing port number 8474 in both host and container makes it possible to connect to the toxiproxy server in the container and check its status from the host machine. A standard command is *.\toxiproxy-cli.exe list* to get the list of the proxies.
