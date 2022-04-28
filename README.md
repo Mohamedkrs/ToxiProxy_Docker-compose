@@ -137,3 +137,7 @@ Inside the config folder, the configuration is stored in a json file.
 }
 ```
 
+# TBD
+- Tests
+
+
