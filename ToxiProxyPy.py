@@ -84,7 +84,7 @@ def __main__():
 
     toxiproxy.destroy_all()
     proxy = create_proxy(proxies, toxiproxy)
-    print(data['waitBeforeInjectingToxics'])
+    print('Waiting for {} before getting evil'.format(data['waitBeforeInjectingToxics']))
     time.sleep(wait(data['waitBeforeInjectingToxics']))
     for toxic in toxics:
         inject_toxins(toxic, proxy)
