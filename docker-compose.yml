@@ -8,8 +8,6 @@ services:
       - "8474:8474"
       - "8554:8554"
       - "554:554"
-      - "6379:6379"
-      - "26379:26379"
   toxiproxyconfigurator:
     tty: true
     volumes:
