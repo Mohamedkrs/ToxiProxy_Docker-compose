@@ -73,7 +73,7 @@ Inside the config folder, the configuration is stored in a json file.
       "duration_offset":"0s",
       "pause": "5s",
       "pause_offset":"0s",
-      "toxics": [
+      "toxicAttrib": [
         {
           "proxy": 0,
           "type": "slicer",
