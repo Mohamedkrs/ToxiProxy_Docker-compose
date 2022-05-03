@@ -21,45 +21,24 @@ First, we will use docker compose. The toxiproxy service starts the toxicproxy s
 - **Mandatory if you want to get the stream outside of the container**: linking the toxiproxy listen port (here *8554*) to the host machine (*8555* aswell) and the RTSP data can be streamed in a webbrowser or VLS using **http//:localhost:8554**
 ### toxiproxyconfigurator
 This section start out python script with the settings inside the [config.json](https://github.com/Mohamedkrs/ToxiProxy/blob/master/config/Config.json) file.
-- **tty** : Print out *live* logs on the screen.
 - **volumes**: copies the config file inside the container.
-- **build**: builds the [Dockerfile](https://github.com/Mohamedkrs/ToxiProxy/blob/master/Dockerfile).
 - **depends_on**: waits for the toxiproxy container to start first. Check [here](https://docs.docker.com/compose/startup-order/).
 ```
 version: '3'
-services:
-  toxiproxy:
-    image: jauderho/toxiproxy
-    ports:
-      - "8474:8474"
-      - "8554:8554"
-      - "554:554"
-  toxiproxyconfigurator:
-    tty: true
-    volumes:
-      - ./config:/usr/app/src/config/
-    build:
-      context: .
-      dockerfile: .
-    depends_on:
+services: 
+  toxiproxy: 
+    image: jauderho/toxiproxy 
+    ports: 
+      - "8474:8474" 
+      - "8554:8554" 
+      - "554:554" 
+  toxiproxyconfigurator: 
+    image: mohamedkrs/toxiproxy
+    volumes: 
+      - ./config:/usr/app/src/config/ 
+    depends_on: 
       - toxiproxy
 ```
-## Docker
-Simply creates a python environement, copies the TopxiProxyPy.py in /usr/app/src and starts it.
-```
-FROM python:3.11.0a7-slim-bullseye
-
-RUN apt-get update && \
-    apt-get upgrade -y && \
-    apt-get install -y git && apt-get install -y apt-transport-https
-
-RUN python -m pip install "git+https://github.com/douglas/toxiproxy-python.git"
-WORKDIR /usr/app/src
-COPY ToxiProxyPy.py ./ToxiProxyPy.py
-CMD ["python", "-u", "ToxiProxyPy.py"]
-```
-## ToxiProxyPy.py
-This is where the magic happens. 
 ## config.json
 Inside the config folder, the configuration is stored in a json file.
 - Configuration section: it is possible to set one or multiple proxies. As an upstream we will take an RTSP camera located in 10.0.1.138 and the listen ip should always be 0.0.0.0.
