@@ -7,7 +7,6 @@ services:
       - "8554:8554" 
       - "554:554" 
   toxiproxyconfigurator: 
-    tty: true 
     image: mohamedkrs/toxiproxy
     volumes: 
       - ./config:/usr/app/src/config/ 
