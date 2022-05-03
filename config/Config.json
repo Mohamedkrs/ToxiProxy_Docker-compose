@@ -1,0 +1,32 @@
+{
+  "title": "Welcome to ToxiProxy",
+  "configuration": [
+    {
+      "upstream": "10.0.1.138:554",
+      "listen": "0.0.0.0:8554",
+      "name": "RTSP",
+      "enabled": true
+    }
+  ],
+  "waitBeforeInjectingToxics":"5s",
+  "Toxics": [
+    {
+      "times": 4,
+      "duration": "15s",
+      "duration_offset":"0s",
+      "pause": "5s",
+      "pause_offset":"0s",
+      "toxics": [
+        {
+          "proxy": 0,
+          "type": "slicer",
+          "name": "slicer",
+          "attributes": {
+            "average_size":100,
+            "delay": 1000000
+          }
+        }
+      ]
+    }
+  ]
+}

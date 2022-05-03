@@ -1,0 +1,15 @@
+version: '3'
+services: 
+  toxiproxy: 
+    image: jauderho/toxiproxy 
+    ports: 
+      - "8474:8474" 
+      - "8554:8554" 
+      - "554:554" 
+  toxiproxyconfigurator: 
+    tty: true 
+    image: mohamedkrs/toxiproxy:0.1 
+    volumes: 
+      - ./config:/usr/app/src/config/ 
+    depends_on: 
+      - toxiproxy
