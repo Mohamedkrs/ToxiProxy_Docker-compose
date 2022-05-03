@@ -16,7 +16,7 @@
       "duration_offset":"0s",
       "pause": "5s",
       "pause_offset":"0s",
-      "toxics": [
+      "toxicAttrib": [
         {
           "proxy": 0,
           "type": "slicer",
