@@ -1,22 +1,16 @@
 version: '3'
 services:
-
-
   toxiproxy:
     image: jauderho/toxiproxy
     ports:
       - "8474:8474"
       - "8554:8554"
       - "554:554"
-      - "6379:6379"
-      - "26379:26379"
   toxiproxyconfigurator:
     tty: true
+    image: mohamedkrs/toxiproxy:0.1
     volumes:
       - ./config:/usr/app/src/config/
-    build:
-      context: .
-      dockerfile: .
     depends_on:
       - toxiproxy
 
