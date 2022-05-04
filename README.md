@@ -5,15 +5,18 @@ One of the testcases was to inject the toxic periodicly and with breaks between 
 # Overview
 This work exploits toxiproxy [python module](https://github.com/douglas/toxiproxy-python), [docker](https://www.docker.com/) and [docker compose](https://docs.docker.com/compose/) and can be udes to test out any application.
 All of the proxies and toxic configurations are stored in the [config.json](https://github.com/Mohamedkrs/ToxiProxy/blob/master/config/Config.json) file.
-# How to use
-Simply modify the config.json and adapt the ports inside of docker-compose file (you need to expose the app/service port to a port inside the container). Run
+# General Steps
+1. Clone/download this Toxiproxy repo locally.
+2. Configure the ports in the docker-compose file
+3. Adapt config.json
+4. Docker-compose up. Run
 > docker-compose up
 ## Output example
 ![image](https://user-images.githubusercontent.com/44847005/165768006-9c3ffecb-be7d-4398-a111-f47629b3d5d0.png)
 
 # Explaining the components
 ## Docker Compose
-First, we will use docker compose. The toxiproxy service starts the toxicproxy server inside a container at port number *8474*. I've chosen [jauderho/toxiproxy](https://hub.docker.com/r/jauderho/toxiproxy) because it is always up to date.
+First, we will use docker compose. The toxiproxy service starts the toxicproxy server inside a container at port number *8474*.
 
 ### toxiproxy ports
 - **Optional**: Exposing port number 8474 in both host and container makes it possible to connect to the toxiproxy server in the container and check its status from the host machine. A standard command is *.\toxiproxy-cli.exe list* to get the list of the proxies.
@@ -27,7 +30,7 @@ This section start out python script with the settings inside the [config.json](
 version: '3'
 services: 
   toxiproxy: 
-    image: jauderho/toxiproxy 
+    image: ghcr.io/shopify/toxiproxy:2.4.0
     ports: 
       - "8474:8474" 
       - "8554:8554" 
@@ -73,7 +76,7 @@ Inside the config folder, the configuration is stored in a json file.
       "duration_offset":"0s",
       "pause": "5s",
       "pause_offset":"0s",
-      "toxics": [
+      "toxicAttrib": [
         {
           "proxy": 0,
           "type": "slicer",
