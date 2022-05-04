@@ -11,11 +11,11 @@
   "waitBeforeInjectingToxics":"5s",
   "Toxics": [
     {
-      "times": 10000,
+      "repetition": -1,
       "duration": "750ms",
       "duration_offset":"250ms",
-      "pause": "500ms",
-      "pause_offset":"0s",
+      "break": "500ms",
+      "break_offset":"0s",
       "toxicAttrib": [
         {
           "proxy": 0,
