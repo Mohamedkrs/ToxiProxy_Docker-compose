@@ -50,7 +50,10 @@ Inside the config folder, the configuration is stored in a json file.
   - First set: it will be repeated 4 times, each time the toxics will be injected for a total duration = duration +/- duration_offset and then disabled for a total break = pause +/- pause_offset (durations and pauses can be set as milliseconds ms, seconds s or minutes m).
   - First set Toxics: In this example the slicer Toxic (see all types and attributes [here](https://github.com/Shopify/toxiproxy#toxics)) is injected in proxy:0  meaning RTSP proxy and proxy:1 meaning RTSP2.
   - Second set: In this example the latency Toxic is injected into RTSP.
-**Important**: If the *times* is set to 0, the toxic will be permanently injected in the proxy.
+  
+**Important**: 
+- Setting repetition to -1 will inject the toxic permanently, keeping the repetition and injection intervals. → should be set at the end of the config file (infinite loop until CTR+C is clicked).
+- Setting repetition to 0 will inject the toxic permanently and ignores the other time intervals (permanently active).  → should be set at the beginning of the config file.
 ```
 {
   "title": "Welcome to ToxiProxy",
@@ -71,11 +74,11 @@ Inside the config folder, the configuration is stored in a json file.
   "waitBeforeInjectingToxics":"5s",
   "Toxics": [
     {
-      "times": 4,
+      "repetition": 4,
       "duration": "15s",
       "duration_offset":"0s",
-      "pause": "5s",
-      "pause_offset":"0s",
+      "break": "5s",
+      "break_offset":"0s",
       "toxicAttrib": [
         {
           "proxy": 0,
@@ -98,11 +101,11 @@ Inside the config folder, the configuration is stored in a json file.
       ]
     },
     {
-      "times":5 ,
+      "repetition":5 ,
       "duration": "15s",
       "duration_offset":"0s",
-      "pause": "5s",
-      "pause_offset":"0s",
+      "break": "5s",
+      "break_offset":"0s",
       "toxics": [
         {
           "proxy": 0,
