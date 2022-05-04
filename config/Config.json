@@ -11,10 +11,10 @@
   "waitBeforeInjectingToxics":"5s",
   "Toxics": [
     {
-      "times": 4,
-      "duration": "15s",
-      "duration_offset":"0s",
-      "pause": "5s",
+      "times": 10000,
+      "duration": "750ms",
+      "duration_offset":"250ms",
+      "pause": "500ms",
       "pause_offset":"0s",
       "toxicAttrib": [
         {
@@ -23,7 +23,7 @@
           "name": "slicer",
           "attributes": {
             "average_size":100,
-            "delay": 1000000
+            "delay": 100000
           }
         }
       ]
