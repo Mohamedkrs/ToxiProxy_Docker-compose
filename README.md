@@ -5,8 +5,11 @@ One of the testcases was to inject the toxic periodicly and with breaks between 
 # Overview
 This work exploits toxiproxy [python module](https://github.com/douglas/toxiproxy-python), [docker](https://www.docker.com/) and [docker compose](https://docs.docker.com/compose/) and can be udes to test out any application.
 All of the proxies and toxic configurations are stored in the [config.json](https://github.com/Mohamedkrs/ToxiProxy/blob/master/config/Config.json) file.
-# How to use
-Simply modify the config.json and adapt the ports inside of docker-compose file (you need to expose the app/service port to a port inside the container). Run
+# General Steps
+1. Clone/download this Toxiproxy repo locally.
+2. Configure the ports in the docker-compose file
+3. Adapt config.json
+4. Docker-compose up. Run
 > docker-compose up
 ## Output example
 ![image](https://user-images.githubusercontent.com/44847005/165768006-9c3ffecb-be7d-4398-a111-f47629b3d5d0.png)
