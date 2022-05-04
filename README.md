@@ -1,5 +1,5 @@
 # Why?
-In my team we wanted to test and configure [Toxiproxy](https://github.com/Shopify/toxiproxy) to simulate bad network connections over RTSP to our cameras.
+Test and configure [Toxiproxy](https://github.com/Shopify/toxiproxy) to simulate bad network connections.
 One of the testcases was to inject the toxic periodicly and with breaks between them.
 
 # Overview
@@ -44,25 +44,28 @@ services:
 ```
 ## config.json
 Inside the config folder, the configuration is stored in a json file.
-- Configuration section: it is possible to set one or multiple proxies. As an upstream we will take an RTSP camera located in 10.0.1.138 and the listen ip should always be 0.0.0.0.
+- Configuration section: it is possible to set one or multiple proxies. As an upstream we will take an RTSP camera located in 10.0.1.*** and the listen ip should always be 0.0.0.0.
 - waitBeforeInjectingToxics: The injection will start after 5s in this example.
 - Toxics: Multiple sets of toxins can be set, each set can inject multiple toxics
   - First set: it will be repeated 4 times, each time the toxics will be injected for a total duration = duration +/- duration_offset and then disabled for a total break = pause +/- pause_offset (durations and pauses can be set as milliseconds ms, seconds s or minutes m).
   - First set Toxics: In this example the slicer Toxic (see all types and attributes [here](https://github.com/Shopify/toxiproxy#toxics)) is injected in proxy:0  meaning RTSP proxy and proxy:1 meaning RTSP2.
   - Second set: In this example the latency Toxic is injected into RTSP.
-**Important**: If the *times* is set to 0, the toxic will be permanently injected in the proxy.
+  
+**Important**: 
+- Setting repetition to -1 will inject the toxic permanently, keeping the repetition and injection intervals. → should be set at the end of the config file (infinite loop until CTR+C is clicked).
+- Setting repetition to 0 will inject the toxic permanently and ignores the other time intervals (permanently active).  → should be set at the beginning of the config file.
 ```
 {
   "title": "Welcome to ToxiProxy",
   "configuration": [
     {
-      "upstream": "10.0.1.138:554",
+      "upstream": "10.0.1.***:554",
       "listen": "0.0.0.0:8554",
       "name": "RTSP",
       "enabled": true
     },
     {
-      "upstream": "10.0.1.188:554",
+      "upstream": "10.0.1.***:554",
       "listen": "0.0.0.0:8554",
       "name": "RTSP2",
       "enabled": true
@@ -71,11 +74,11 @@ Inside the config folder, the configuration is stored in a json file.
   "waitBeforeInjectingToxics":"5s",
   "Toxics": [
     {
-      "times": 4,
+      "repetition": 4,
       "duration": "15s",
       "duration_offset":"0s",
-      "pause": "5s",
-      "pause_offset":"0s",
+      "break": "5s",
+      "break_offset":"0s",
       "toxicAttrib": [
         {
           "proxy": 0,
@@ -98,11 +101,11 @@ Inside the config folder, the configuration is stored in a json file.
       ]
     },
     {
-      "times":5 ,
+      "repetition":5 ,
       "duration": "15s",
       "duration_offset":"0s",
-      "pause": "5s",
-      "pause_offset":"0s",
+      "break": "5s",
+      "break_offset":"0s",
       "toxics": [
         {
           "proxy": 0,
