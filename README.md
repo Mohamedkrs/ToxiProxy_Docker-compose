@@ -1,5 +1,5 @@
 # Why?
-In my team we wanted to test and configure [Toxiproxy](https://github.com/Shopify/toxiproxy) to simulate bad network connections over RTSP to our cameras.
+Test and configure [Toxiproxy](https://github.com/Shopify/toxiproxy) to simulate bad network connections.
 One of the testcases was to inject the toxic periodicly and with breaks between them.
 
 # Overview
@@ -44,7 +44,7 @@ services:
 ```
 ## config.json
 Inside the config folder, the configuration is stored in a json file.
-- Configuration section: it is possible to set one or multiple proxies. As an upstream we will take an RTSP camera located in 10.0.1.138 and the listen ip should always be 0.0.0.0.
+- Configuration section: it is possible to set one or multiple proxies. As an upstream we will take an RTSP camera located in 10.0.1.*** and the listen ip should always be 0.0.0.0.
 - waitBeforeInjectingToxics: The injection will start after 5s in this example.
 - Toxics: Multiple sets of toxins can be set, each set can inject multiple toxics
   - First set: it will be repeated 4 times, each time the toxics will be injected for a total duration = duration +/- duration_offset and then disabled for a total break = pause +/- pause_offset (durations and pauses can be set as milliseconds ms, seconds s or minutes m).
@@ -59,13 +59,13 @@ Inside the config folder, the configuration is stored in a json file.
   "title": "Welcome to ToxiProxy",
   "configuration": [
     {
-      "upstream": "10.0.1.138:554",
+      "upstream": "10.0.1.***:554",
       "listen": "0.0.0.0:8554",
       "name": "RTSP",
       "enabled": true
     },
     {
-      "upstream": "10.0.1.188:554",
+      "upstream": "10.0.1.***:554",
       "listen": "0.0.0.0:8554",
       "name": "RTSP2",
       "enabled": true
